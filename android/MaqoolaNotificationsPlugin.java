@@ -46,8 +46,8 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 
 			        //set timer you want alarm to work (here I have set it to 7.20pm)
 			        Calendar timeOff9 = Calendar.getInstance();
-			        timeOff9.set(Calendar.HOUR_OF_DAY, 19);
-			        timeOff9.set(Calendar.MINUTE, 57);
+			        timeOff9.set(Calendar.HOUR_OF_DAY, 22);
+			        timeOff9.set(Calendar.MINUTE, 5);
 			        timeOff9.set(Calendar.SECOND, 0);
 
 			        //set that timer as a RTC Wakeup to alarm manager object
