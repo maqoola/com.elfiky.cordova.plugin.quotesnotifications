@@ -12,7 +12,7 @@
         'add_notification', // with this action name
         []
       );
-    },
+    }
 
 
   };
