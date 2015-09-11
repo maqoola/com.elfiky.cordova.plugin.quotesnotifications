@@ -4,7 +4,7 @@
 
   var MaqoolaNotification = {
 
-    showInterstitial: function ( successCallback, errorCallback) {
+  addNotification: function ( successCallback, errorCallback) {
       cordova.exec(
         successCallback, // success callback function
         errorCallback, // error callback function
