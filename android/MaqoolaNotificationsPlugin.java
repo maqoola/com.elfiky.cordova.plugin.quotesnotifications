@@ -1,6 +1,8 @@
 package com.elfiky.cordova.plugin.quotesnotifications;
 
 import org.apache.cordova.*;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -25,6 +27,7 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 		if (ACTION_ADD_NOTIFICATION.equals(action)) {
 			executeAddBroadCastReciver(callbackContext);
 		}
+		
 
 		return true;
 
@@ -36,10 +39,10 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-				    AlarmManager alarmMgr0 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+				    AlarmManager alarmMgr0 = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
 			        //Create pending intent & register it to your alarm notifier class
-			        Intent intent0 = new Intent(this, NotificationReceiver.class);
-			        PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent0, 0);
+			        Intent intent0 = new Intent(cordova.getActivity(), NotificationReceiver.class);
+			        PendingIntent pendingIntent0 = PendingIntent.getBroadcast(cordova.getActivity(), 0, intent0, 0);
 
 			        //set timer you want alarm to work (here I have set it to 7.20pm)
 			        Calendar timeOff9 = Calendar.getInstance();

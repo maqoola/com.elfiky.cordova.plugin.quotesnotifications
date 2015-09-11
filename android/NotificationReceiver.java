@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.trio.android.maqoola.R;
 
 import java.util.Random;
 
@@ -84,7 +85,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         final NotificationManager mgr = (NotificationManager) current_object
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Notification note = new Notification(R.mipmap.ic_launcher, title, System.currentTimeMillis());
+        Notification note = new Notification(R.drawable.icon, title, System.currentTimeMillis());
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Ringtone r = RingtoneManager.getRingtone(current_object.getApplicationContext(), notification);
         r.play();
