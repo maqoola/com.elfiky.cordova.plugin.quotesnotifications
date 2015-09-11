@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.elfiky.cordova.plugin.quotesnotifications"
+        version="1.0">
+
+    <name>Maqoola Notification Plugin</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0"/>
+    </engines>
+
+    <asset src="js/notification.js" target="js/notification.js"/>
+
+    <js-module src="js/notification.js" name="MaqoolaNotification">
+        <clobbers target="MaqoolaNotification"/>
+    </js-module>
+
+
+
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MaqoolaNotificationsPlugin">
+                <param name="android-package" value="com.elfiky.cordova.plugin.quotesnotifications.NotificationReceiver"/>
+            </feature>
+        </config-file>
+
+        <source-file src="android/NotificationReceiver.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+        <source-file src="android/MaqoolaNotificationsPlugin.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+        
+        <source-file src="androidasync-2.1.6.jar" target-dir="libs" />
+        <source-file src="gson-2.3.1.jar" target-dir="libs" />
+        <source-file src="ion-2.1.6.jar" target-dir="libs" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver android:name="com.elfiky.cordova.plugin.quotesnotifications.NotificationReceiver"
+                android:enabled="true"
+                android:exported="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                </intent-filter>
+            </receiver>
+        </config-file>
+
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+    </platform>
+
+</plugin>
