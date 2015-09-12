@@ -25,26 +25,42 @@
             </feature>
         </config-file>
 
-        <source-file src="android/NotificationReceiver.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+        <source-file src="android/Alarm.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+        <source-file src="android/MaquolaService.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
         <source-file src="android/MaqoolaNotificationsPlugin.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+        <source-file src="android/ViewQuoteActivity.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
 
         <source-file src="android/androidasync-2.1.6.jar" target-dir="libs" />
         <source-file src="android/gson-2.3.1.jar" target-dir="libs" />
         <source-file src="android/ion-2.1.6.jar" target-dir="libs" />
 
+
+        <source-file src="res/drawable-hdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi/" />
+        <source-file src="res/drawable-hdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v9/" />
+        <source-file src="res/drawable-hdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v11/" />
+        <source-file src="res/drawable-ldpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi/" />
+        <source-file src="res/drawable-ldpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v9/" />
+        <source-file src="res/drawable-ldpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v11/" />
+        <source-file src="res/drawable-mdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi/" />
+        <source-file src="res/drawable-mdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v9/" />
+        <source-file src="res/drawable-mdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v11/" />
+
+
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <receiver android:name="com.elfiky.cordova.plugin.quotesnotifications.NotificationReceiver"
-                android:enabled="true"
-                android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED" />
-                </intent-filter>
-            </receiver>
+           
+        <service android:name="com.elfiky.cordova.plugin.quotesnotifications.MaquolaService" />
+        <receiver android:enabled="true" android:exported="false" android:name="com.elfiky.cordova.plugin.quotesnotifications.Alarm" android:process=":remote">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED" />
+           </intent-filter>
+        </receiver>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="com.elfiky.cordova.plugin.quotesnotifications.ViewQuoteActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize">
+        </activity>
+
         </config-file>
 
 
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
