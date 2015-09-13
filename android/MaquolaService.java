@@ -36,7 +36,7 @@ public class MaquolaService extends Service {
 	Alarm alarm = new Alarm();
 	protected final int NOTIFY_ME_ID = 11041;
 	public static String TAG = "notification_quotes_error";
-	public static String URL = "http://192.168.43.90:8000/api/cashed_quotes";
+	public static String URL = "http://www.maqoola.com/api/cashed_quotes";
 	public static String QUOTES_KEY = "cashed_quotes";
 	public static String CURRENT_DAY = "current_day";
 	static Context current_object;
@@ -62,7 +62,7 @@ public class MaquolaService extends Service {
 						Calendar c = Calendar.getInstance();
 						int hour = c.get(Calendar.HOUR_OF_DAY);
 						
-						if (hour == 18 && (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs.getInt(CURRENT_DAY, -1) != c.get(Calendar.DAY_OF_YEAR))) {
+						if (hour == 11 && (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs.getInt(CURRENT_DAY, -1) != c.get(Calendar.DAY_OF_YEAR))) {
 							prefs.edit().putInt(CURRENT_DAY, c.get(Calendar.DAY_OF_YEAR)).apply();
 							String temp_quotes = prefs
 									.getString(QUOTES_KEY, "");
@@ -119,7 +119,7 @@ public class MaquolaService extends Service {
 				JsonObject quote = quotes.get(r.nextInt(quotes.size() - 1))
 						.getAsJsonObject();
 				body = quote.get("quote").getAsString();
-				title = quote.get("author_name").getAsString();
+				title = quote.get("auther_name").getAsString();
 				quote_id = quote.get("id").getAsString();
 			}
 
