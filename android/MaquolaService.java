@@ -62,7 +62,7 @@ public class MaquolaService extends Service {
 						Calendar c = Calendar.getInstance();
 						int hour = c.get(Calendar.HOUR_OF_DAY);
 						
-						if (hour == 11 && (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs.getInt(CURRENT_DAY, -1) != c.get(Calendar.DAY_OF_YEAR))) {
+						if (hour == 12 && (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs.getInt(CURRENT_DAY, -1) != c.get(Calendar.DAY_OF_YEAR))) {
 							prefs.edit().putInt(CURRENT_DAY, c.get(Calendar.DAY_OF_YEAR)).apply();
 							String temp_quotes = prefs
 									.getString(QUOTES_KEY, "");
