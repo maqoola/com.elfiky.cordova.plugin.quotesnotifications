@@ -51,51 +51,65 @@ public class MaquolaService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		try {
 			current_object = this;
-			prefs = getSharedPreferences(MaquolaService.class
-					.getPackage().getName(), Context.MODE_PRIVATE);
-		
+			prefs = getSharedPreferences(MaquolaService.class.getPackage()
+					.getName(), Context.MODE_PRIVATE);
+
 			// start tracking location
 			Thread thread = new Thread() {
 				@Override
 				public void run() {
 					try {
-						Calendar c = Calendar.getInstance();
-						int hour = c.get(Calendar.HOUR_OF_DAY);
-						
-						if (hour == 12 && (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs.getInt(CURRENT_DAY, -1) != c.get(Calendar.DAY_OF_YEAR))) {
-							prefs.edit().putInt(CURRENT_DAY, c.get(Calendar.DAY_OF_YEAR)).apply();
-							String temp_quotes = prefs
-									.getString(QUOTES_KEY, "");
-							if (!temp_quotes.equals("")) {
-								JsonParser parser = new JsonParser();
-								JsonElement tradeElement = parser
-										.parse(temp_quotes);
-								JsonArray quotes = tradeElement
-										.getAsJsonArray();
-								setQuote(quotes);
-							} else {
-								Ion.with(current_object)
-								.load(URL)
-								.asJsonArray()
-								.setCallback(
-									new FutureCallback<JsonArray>() {
-										@Override
-										public void onCompleted(Exception e, JsonArray result) {
-											if (e == null) {
-												prefs.edit().putString(QUOTES_KEY,
-																result.toString()).apply();
-												setQuote(result);
-											} else {
-												if (e.getMessage() != null)
-													Log.e(TAG,
-															e.getMessage());
-											}
-										}
-									});
-							}
-							Thread.sleep(1000*60*60);
-						}
 
+						while (true) {
+							Calendar c = Calendar.getInstance();
+							int hour = c.get(Calendar.HOUR_OF_DAY);
+
+							if (hour == 10
+									&& (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs
+											.getInt(CURRENT_DAY, -1) != c
+											.get(Calendar.DAY_OF_YEAR))) {
+								prefs.edit()
+										.putInt(CURRENT_DAY,
+												c.get(Calendar.DAY_OF_YEAR))
+										.apply();
+								String temp_quotes = prefs.getString(
+										QUOTES_KEY, "");
+								if (!temp_quotes.equals("")) {
+									JsonParser parser = new JsonParser();
+									JsonElement tradeElement = parser
+											.parse(temp_quotes);
+									JsonArray quotes = tradeElement
+											.getAsJsonArray();
+									setQuote(quotes);
+								} else {
+									Ion.with(current_object)
+											.load(URL)
+											.asJsonArray()
+											.setCallback(
+													new FutureCallback<JsonArray>() {
+														@Override
+														public void onCompleted(
+																Exception e,
+																JsonArray result) {
+															if (e == null) {
+																prefs.edit()
+																		.putString(
+																				QUOTES_KEY,
+																				result.toString())
+																		.apply();
+																setQuote(result);
+															} else {
+																if (e.getMessage() != null)
+																	Log.e(TAG,
+																			e.getMessage());
+															}
+														}
+													});
+								}
+							}
+
+							Thread.sleep(20 * 1000);
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -139,8 +153,8 @@ public class MaquolaService extends Service {
 			Notification noti = new Notification.Builder(current_object)
 					.setDefaults(Notification.DEFAULT_ALL)
 					.setContentTitle(title).setContentText(body)
-					.setSmallIcon(R.drawable.ic_stat_quotes_white_icon).setOnlyAlertOnce(true)
-					.setContentIntent(i).build();
+					.setSmallIcon(R.drawable.ic_stat_quotes_white_icon)
+					.setOnlyAlertOnce(true).setContentIntent(i).build();
 
 			mgr.notify(NOTIFY_ME_ID, noti);
 			LOG.v(TAG, quote_id);
