@@ -60,17 +60,6 @@ public class MaquolaService extends Service {
 				public void run() {
 					try {
 
-							Calendar c = Calendar.getInstance();
-							int hour = c.get(Calendar.HOUR_OF_DAY);
-
-							if (hour == 10
-									&& (prefs.getInt(CURRENT_DAY, -1) == -1 || prefs
-											.getInt(CURRENT_DAY, -1) != c
-											.get(Calendar.DAY_OF_YEAR))) {
-								prefs.edit()
-										.putInt(CURRENT_DAY,
-												c.get(Calendar.DAY_OF_YEAR))
-										.apply();
 								String temp_quotes = prefs.getString(
 										QUOTES_KEY, "");
 								if (!temp_quotes.equals("")) {
@@ -107,7 +96,6 @@ public class MaquolaService extends Service {
 														}
 													});
 								}
-							}
 
 							
 					} catch (Exception e) {
