@@ -60,7 +60,6 @@ public class MaquolaService extends Service {
 				public void run() {
 					try {
 
-						while (true) {
 							Calendar c = Calendar.getInstance();
 							int hour = c.get(Calendar.HOUR_OF_DAY);
 
@@ -81,6 +80,7 @@ public class MaquolaService extends Service {
 									JsonArray quotes = tradeElement
 											.getAsJsonArray();
 									setQuote(quotes);
+									MaquolaService.this.stopSelf();
 								} else {
 									Ion.with(current_object)
 											.load(URL)
@@ -103,13 +103,13 @@ public class MaquolaService extends Service {
 																	Log.e(TAG,
 																			e.getMessage());
 															}
+															MaquolaService.this.stopSelf();
 														}
 													});
 								}
 							}
 
-							Thread.sleep(20 * 1000);
-						}
+							
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -165,7 +165,7 @@ public class MaquolaService extends Service {
 	}
 
 	public void onStart(Context context, Intent intent, int startId) {
-		alarm.SetAlarm(context);
+		
 	}
 
 	@Override
