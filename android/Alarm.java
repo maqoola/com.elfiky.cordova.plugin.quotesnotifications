@@ -1,5 +1,7 @@
 package com.elfiky.cordova.plugin.quotesnotifications;
 
+import java.util.Calendar;
+
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -22,18 +24,27 @@ public class Alarm extends BroadcastReceiver
 
 
         if(!isMyServiceRunning(context, MaquolaService.class)){
-        	Intent i = new Intent(context, MaquolaService.class);
-        	context.startService(i);
+            Intent i = new Intent(context, MaquolaService.class);
+            context.startService(i);
         }
         wakeLock.release();
     }
 
     public void SetAlarm(Context context)
     {
-        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmMgr= (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent alarmIntent = new Intent(context, Alarm.class);
+
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * 60 , pi); // Millisec * Second * Minute
+        // Set the alarm to start at approximately 2:00 p.m.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+
+        // With setInexactRepeating(), you have to use one of the AlarmManager interval
+        // constants--in this case, AlarmManager.INTERVAL_DAY.
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pi);
     }
 
     public void CancelAlarm(Context context)
