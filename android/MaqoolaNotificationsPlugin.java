@@ -39,10 +39,9 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					if (!Alarm.isMyServiceRunning(cordova.getActivity(), MaquolaService.class)) {
-						Intent i = new Intent(cordova.getActivity(), MaquolaService.class);
-						cordova.getActivity().startService(i);
-					}
+
+					Alarm alarm = new Alarm();
+					alarm.SetAlarm(cordova.getActivity());
 					
 				} catch (Exception ex) {
 					Log.e(TAG, "Error Adding Broadcast Reciver");
