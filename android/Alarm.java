@@ -46,8 +46,7 @@ public class Alarm extends BroadcastReceiver {
         wakeLock.acquire();
 
         current_object = context;
-        prefs = context.getSharedPreferences(intent.getClass().getPackage()
-                .getName(), Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(MaqoolaNotificationsPlugin.NOTIFICATION_KEY, Context.MODE_PRIVATE);
 
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_YEAR);
@@ -83,9 +82,8 @@ public class Alarm extends BroadcastReceiver {
     public void SetAlarm(Context context) {
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_YEAR);
-
-        prefs = context.getSharedPreferences(context.getClass().getPackage()
-                .getName(), Context.MODE_PRIVATE);
+        Log.v(TAG, context.getClass().getPackage().getName());
+        prefs = context.getSharedPreferences(MaqoolaNotificationsPlugin.NOTIFICATION_KEY, Context.MODE_PRIVATE);
         if (prefs.getInt(CURRENT_DAY, -1) == -1) {
 
             AlarmManager alarmMgr = (AlarmManager) context
@@ -96,7 +94,9 @@ public class Alarm extends BroadcastReceiver {
                     alarmIntent, 0);
             // Set the alarm to start at approximately 1:00 p.m.
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.MINUTE, 1);
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
 
             // With setInexactRepeating(), you have to use one of the
             // AlarmManager

@@ -22,6 +22,7 @@ package com.elfiky.cordova.plugin.quotesnotifications;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import org.apache.cordova.*;
 
@@ -34,9 +35,11 @@ public class ViewQuoteActivity extends CordovaActivity {
     // Set by <content src="index.html" /> in config.xml
 
     SharedPreferences prefs = this.getSharedPreferences(
-        ViewQuoteActivity.class.getPackage().getName(), Context.MODE_PRIVATE);
+       MaqoolaNotificationsPlugin.NOTIFICATION_KEY, Context.MODE_PRIVATE);
+
+  Log.v(TAG, ViewQuoteActivity.class.getPackage().getName());
     String quote_id = prefs.getString(MaqoolaNotificationsPlugin.QUOTE_ID_KEY, "");
-    LOG.e(TAG, quote_id);
+    Log.v(TAG, quote_id);
     if (quote_id == "")
       loadUrl(launchUrl);
     else
