@@ -118,7 +118,7 @@ public class Alarm extends BroadcastReceiver {
                 0);
         // Set the alarm to start at approximately 1:00 p.m.
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR_OF_DAY, 3);
+        calendar.add(Calendar.HOUR_OF_DAY, 12);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 

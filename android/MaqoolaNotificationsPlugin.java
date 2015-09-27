@@ -20,7 +20,7 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 	public static final String ACTION_ADD_NOTIFICATION = "add_notification";
 	private final String TAG = "notification_quotes_error";
 	public final static String QUOTE_ID_KEY = "quote_id";
-	public final static String NOTIFICATION_KEY = "maqoola_notification_key";
+	public final static String NOTIFICATION_KEY = "maqoola_notifications_key";
 
 	@Override
 	public boolean execute(final String action, JSONArray data,
