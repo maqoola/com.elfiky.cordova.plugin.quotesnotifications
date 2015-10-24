@@ -28,17 +28,20 @@ import org.apache.cordova.*;
 
 public class ViewQuoteActivity extends CordovaActivity {
 
-    private static final String TAG = "notification_quotes_error";
+  private static final String TAG = "notification_quotes_error";
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     // Set by <content src="index.html" /> in config.xml
 
     SharedPreferences prefs = this.getSharedPreferences(
-       MaqoolaNotificationsPlugin.NOTIFICATION_KEY, Context.MODE_PRIVATE);
+        MaqoolaNotificationsPlugin.NOTIFICATION_KEY,
+        Context.MODE_PRIVATE);
 
-  Log.v(TAG, ViewQuoteActivity.class.getPackage().getName());
-    String quote_id = prefs.getString(MaqoolaNotificationsPlugin.QUOTE_ID_KEY, "");
+    Log.v(TAG, ViewQuoteActivity.class.getPackage().getName());
+    String quote_id = prefs.getString(
+        MaqoolaNotificationsPlugin.QUOTE_ID_KEY, "");
     Log.v(TAG, quote_id);
     if (quote_id == "")
       loadUrl(launchUrl);

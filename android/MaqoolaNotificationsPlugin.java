@@ -4,16 +4,7 @@ import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.ViewGroup;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-
-import java.util.Calendar;
 
 public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 
@@ -43,7 +34,7 @@ public class MaqoolaNotificationsPlugin extends CordovaPlugin {
 
 					Alarm alarm = new Alarm();
 					alarm.SetAlarm(cordova.getActivity());
-					
+
 				} catch (Exception ex) {
 					Log.e(TAG, "Error Adding Broadcast Reciver");
 					Log.e(TAG, ex.getMessage());

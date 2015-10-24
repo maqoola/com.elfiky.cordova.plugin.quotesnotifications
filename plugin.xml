@@ -32,6 +32,7 @@
         <source-file src="android/androidasync-2.1.6.jar" target-dir="libs" />
         <source-file src="android/gson-2.3.1.jar" target-dir="libs" />
         <source-file src="android/ion-2.1.6.jar" target-dir="libs" />
+        <source-file src="android/android-support-v4.jar" target-dir="libs" />
 
 
         <source-file src="res/drawable-hdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi/" />
@@ -46,14 +47,14 @@
 
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-           
+
         <receiver android:enabled="true" android:exported="false" android:name="com.elfiky.cordova.plugin.quotesnotifications.Alarm" android:process=":remote">
            <intent-filter>
                <action android:name="android.intent.action.BOOT_COMPLETED" />
            </intent-filter>
         </receiver>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="com.elfiky.cordova.plugin.quotesnotifications.ViewQuoteActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize">
-        </activity>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:name="com.elfiky.cordova.plugin.quotesnotifications.ViewQuoteActivity"
+     android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize" />
 
         </config-file>
 
