@@ -1,70 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.elfiky.cordova.plugin.quotesnotifications"
-        version="1.0">
+<plugin id="com.elfiky.cordova.plugin.quotesnotifications" version="1.0" xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
-    <name>Maqoola Notification Plugin</name>
+  <name>Maqoola Notification Plugin</name>
 
-    <engines>
-        <engine name="cordova" version=">=3.4.0"/>
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
     </engines>
 
     <asset src="js/notification.js" target="js/notification.js"/>
 
-    <js-module src="js/notification.js" name="MaqoolaNotification">
-        <clobbers target="MaqoolaNotification"/>
+    <js-module name="MaqoolaNotification" src="js/notification.js">
+      <clobbers target="MaqoolaNotification"/>
     </js-module>
-
-
 
     <platform name="android">
 
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="MaqoolaNotificationsPlugin">
-                <param name="android-package" value="com.elfiky.cordova.plugin.quotesnotifications.MaqoolaNotificationsPlugin"/>
-            </feature>
-        </config-file>
+      <config-file parent="/*" target="res/xml/config.xml">
+        <feature name="MaqoolaNotificationsPlugin">
+          <param name="android-package" value="com.elfiky.cordova.plugin.quotesnotifications.MaqoolaNotificationsPlugin"/>
+        </feature>
+      </config-file>
 
-        <source-file src="android/Alarm.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
-        <source-file src="android/MaqoolaNotificationsPlugin.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
-        <source-file src="android/ViewQuoteActivity.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/" />
+      <source-file src="android/Alarm.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
+      <source-file src="android/MaqoolaNotificationsPlugin.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
+      <source-file src="android/ViewQuoteActivity.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
 
-        <source-file src="android/androidasync-2.1.6.jar" target-dir="libs" />
-        <source-file src="android/gson-2.3.1.jar" target-dir="libs" />
-        <source-file src="android/ion-2.1.6.jar" target-dir="libs" />
-        <source-file src="android/android-support-v4.jar" target-dir="libs" />
+      <source-file src="android/androidasync-2.1.6.jar" target-dir="libs"/>
+      <source-file src="android/gson-2.3.1.jar" target-dir="libs"/>
+      <source-file src="android/ion-2.1.6.jar" target-dir="libs"/>
+      <source-file src="android/android-support-v4.jar" target-dir="libs"/>
+      <source-file src="android/universal-image-loader-1.9.4.jar" target-dir="libs"/>
 
+      <source-file src="res/drawable-hdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi/"/>
+      <source-file src="res/drawable-hdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v9/"/>
+      <source-file src="res/drawable-hdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v11/"/>
+      <source-file src="res/drawable-ldpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi/"/>
+      <source-file src="res/drawable-ldpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v9/"/>
+      <source-file src="res/drawable-ldpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v11/"/>
+      <source-file src="res/drawable-mdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi/"/>
+      <source-file src="res/drawable-mdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v9/"/>
+      <source-file src="res/drawable-mdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v11/"/>
+      <source-file src="res/xml/maqoola_widget_info.xml" target-dir="res/xml/"/>
+      <source-file src="res/drawable/circular_progress_bar.xml" target-dir="res/drawable/"/>
+      <source-file src="res/drawable/preview.png" target-dir="res/drawable/"/>
+      <source-file src="res/drawable/unknown.jpg" target-dir="res/drawable/"/>
+      <source-file src="res/layout/maqoola_widget.xml" target-dir="res/layout/"/>
+      <source-file src="res/values-v14/dimens.xml" target-dir="res/values-v14/"/>
+      <source-file src="res/values/dimens.xml" target-dir="res/values/"/>
 
-        <source-file src="res/drawable-hdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi/" />
-        <source-file src="res/drawable-hdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v9/" />
-        <source-file src="res/drawable-hdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-hdpi-v11/" />
-        <source-file src="res/drawable-ldpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi/" />
-        <source-file src="res/drawable-ldpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v9/" />
-        <source-file src="res/drawable-ldpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-ldpi-v11/" />
-        <source-file src="res/drawable-mdpi/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi/" />
-        <source-file src="res/drawable-mdpi-v9/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v9/" />
-        <source-file src="res/drawable-mdpi-v11/ic_stat_quotes_white_icon.png" target-dir="res/drawable-mdpi-v11/" />
-
-
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-
-        <receiver android:enabled="true" android:exported="false" android:name="com.elfiky.cordova.plugin.quotesnotifications.Alarm" android:process=":remote">
-           <intent-filter>
-               <action android:name="android.intent.action.BOOT_COMPLETED" />
-           </intent-filter>
+      <config-file parent="/manifest/application" target="AndroidManifest.xml">
+        <receiver android:name="com.elfiky.cordova.plugin.quotesnotifications.MaqoolaWidgetProvider">
+          <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+          </intent-filter>
+          <meta-data android:name="android.appwidget.provider" android:resource="@xml/maqoola_widget_info"/>
         </receiver>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:name="com.elfiky.cordova.plugin.quotesnotifications.ViewQuoteActivity"
-     android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize" />
+        <receiver android:enabled="true" android:exported="false" android:name="com.elfiky.cordova.plugin.quotesnotifications.Alarm" android:process=":remote">
+          <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+          </intent-filter>
+        </receiver>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTask" android:name="com.elfiky.cordova.plugin.quotesnotifications.ViewQuoteActivity"
+          android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize"/>
 
-        </config-file>
+      </config-file>
 
-
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-            <uses-permission android:name="android.permission.WAKE_LOCK" />
-        </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml">
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+        <uses-permission android:name="android.permission.WAKE_LOCK"/>
+      </config-file>
     </platform>
 
-</plugin>
+  </plugin>
