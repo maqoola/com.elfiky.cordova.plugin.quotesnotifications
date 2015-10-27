@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin id="com.elfiky.cordova.plugin.quotesnotifications" version="1.0" xmlns="http://www.phonegap.com/ns/plugins/1.0">
+<plugin id="com.elfiky.cordova.plugin.quotesnotifications" version="1.5" xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
   <name>Maqoola Notification Plugin</name>
 
@@ -24,6 +24,7 @@
       <source-file src="android/Alarm.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
       <source-file src="android/MaqoolaNotificationsPlugin.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
       <source-file src="android/ViewQuoteActivity.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
+      <source-file src="android/MaqoolaWidgetProvider.java" target-dir="src/com/elfiky/cordova/plugin/quotesnotifications/"/>
 
       <source-file src="android/androidasync-2.1.6.jar" target-dir="libs"/>
       <source-file src="android/gson-2.3.1.jar" target-dir="libs"/>

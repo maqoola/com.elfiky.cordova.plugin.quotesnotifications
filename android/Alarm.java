@@ -150,7 +150,7 @@ public class Alarm extends BroadcastReceiver {
     public static void setQuote(JsonArray quotes) {
         try {
 
-            String title = "test", body = "body", brief = "brief", quote_id = "";
+            String title = "", body = "", brief = "", quote_id = "";
             JsonObject quote = null;
             if (quotes.size() > 0) {
                 Random r = new Random();
@@ -158,7 +158,7 @@ public class Alarm extends BroadcastReceiver {
                         .getAsJsonObject();
                 body = quote.get("quote").getAsString();
                 title = quote.get("auther_name").getAsString();
-                brief = quote.get("brief").getAsString();
+                brief = quote.get("brief").getAsString().trim();
                 quote_id = quote.get("id").getAsString();
             }
             if (quote != null) {
