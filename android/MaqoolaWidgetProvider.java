@@ -165,6 +165,15 @@ public class MaqoolaWidgetProvider extends AppWidgetProvider {
                         pendingIntent);
                 remoteViews.setViewVisibility(R.id.loadingIcon, View.GONE);
 
+                prefs.edit()
+                .putString(MaqoolaNotificationsPlugin.QUOTE_ID_KEY,
+                        quote.toString()).apply();
+                PendingIntent i = getShowQuoteIntent(intent);
+
+                remoteViews.setOnClickPendingIntent(R.id.txtQuote, i);
+                remoteViews.setOnClickPendingIntent(R.id.txtAuthor, i);
+                remoteViews.setOnClickPendingIntent(R.id.imgAuthor, i);
+
                 appWidgetManager.updateAppWidget(widgetId, remoteViews);
             }
         } catch (Exception ex) {
@@ -172,5 +181,20 @@ public class MaqoolaWidgetProvider extends AppWidgetProvider {
         }
 
     }
+
+	private static PendingIntent getShowQuoteIntent(Intent intent) {
+		Intent _intent = new Intent(current_context,
+		        ViewQuoteActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+		        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
+		        | Intent.FLAG_ACTIVITY_CLEAR_TOP
+		        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent.setAction(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+		PendingIntent i = PendingIntent.getActivity(current_context, 0,
+				_intent, 0);
+		return i;
+	}
 
 }
